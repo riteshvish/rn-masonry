@@ -1,6 +1,6 @@
 {
   "name": "rn-masonry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react native masonry",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "react-native-masonry",
     "masonry",
-    "rc-masonry"
+    "rn-masonry"
   ],
   "author": "ritesh vishwakarma",
   "license": "ISC"
