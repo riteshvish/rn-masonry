@@ -48,7 +48,7 @@ source will only work on object  **(required('../img.jpg') will not work)**
 
 
 
-## Usage example
+## Usage example 1
 
 
 ```javascript
@@ -88,8 +88,7 @@ class MasonryExample extends Component {
       />
     );
   }
-  render() {
-    SplashScreen.hide();
+  render() {  
     let data=[]
     var image=[
         'http://image1.jpg',
@@ -118,4 +117,91 @@ class MasonryExample extends Component {
 }
 
 export default MasonryExample ;
+
+```
+
+## Usage example 2 (pass onPress event )
+
+
+```javascript
+
+import {
+MasonryImage,Masonry
+} from 'rn-masonry';
+
+class CustomView extends Component {
+
+  render() {
+
+    return (
+      <TouchableOpacity style={[this.props.style,{backgroundColor:'#ccc'
+      ,borderRadius:5}]}
+        onPress={this.props.data.onPress}
+      >
+        <MasonryImage
+          resizeMode={"cover"}
+          gridWidth={this.props.gridWidth}
+          style={{borderRadius:5}}
+          source={{uri:this.props.data.uri}}>
+        </MasonryImage>
+        <Text>{this.props.data.title}</Text>
+      </TouchableOpacity>
+
+    )
+  }
+}
+
+class MasonryExample extends Component {
+  renderView(props) {
+    return (
+      <CustomView
+        {...props}
+      />
+    );
+  }
+
+  onPress(data){
+    return () =>{
+      console.warn(data.title)
+    }
+  }
+  render() {
+
+    let data=[]
+
+    var image=[
+        'http://image1.jpg',
+        'http://image2.jpg',
+        'http://image3.jpg'
+    ]
+    //this.onPress(data object)
+    for (var i = 0; i < 50; i++) {
+      data.push({onPress:this.onPress({"title":"Item "+i}),"title":"Item "+i,uri:image[parseInt(Math.random()*5)%3]})
+    }
+
+    return (
+      <View style={{flex:1}}>
+
+        <View style={{flex:1}}>
+          <Masonry
+            cols={3}
+            renderView={this.renderView}
+            gridPadding={5}
+            gridMargin={5}
+            data={data}
+            ></Masonry>
+        </View>
+
+
+
+      </View>
+
+    )
+  }
+}
+
+export default MasonryExample ;
+
+
+
 ```
